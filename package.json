@@ -1,0 +1,20 @@
+{
+  "name": "pouchdb-bug",
+  "version": "1.0.0",
+  "author": "Ben Standefer <benstandefer@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "node ./lib/index.js"
+  },
+  "dependencies": {
+    "pouchdb": "6.3.4",
+    "pouchdb-upsert": "2.0.0",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}

@@ -34,57 +34,7 @@ My app depends on the PouchDB Changes API to know when to re-index data in other
 
 Thanks for your hard work on PouchDB. I love it. Let me know what I can do to help diagnose the cause of this problem. Apologies if I'm misuing the database. I've read the docs a bunch of times and think this is a bug.
 
-# Example Output (multiple runs)
-
-```
-Sequence!ben:/Users/ben/code/pouchdb-bug$ yarn build && yarn test
-yarn run v1.3.2
-$ babel src -d lib
-src/Tester.js -> lib/Tester.js
-src/index.js -> lib/index.js
-✨  Done in 0.56s.
-yarn run v1.3.2
-$ node ./lib/index.js
-Tester inited
-========== initialIndexing() ==========
-Upserted doc 1 in this.downstreamDB { updated: true, rev: '1-8f515e0a01d1400788878e36490287e1' }
-Upserted doc 2 in this.downstreamDB { updated: true, rev: '1-3dc482f1c094458a8d50e4a6acb254ea' }
-Upserted doc 3 in this.downstreamDB { updated: true, rev: '1-a2253af8e19d435cae15a75a327be61a' }
-Initial indexing finished
-========== startReplication() ==========
-========== createUpstreamDBChanges() ==========
-Upserted doc 1 in this.upstreamDB { updated: true, rev: '1-39e1230707904e94a7d8fc03000b9b48' }
-Upserted doc 2 in this.upstreamDB { updated: true, rev: '1-dcc171238abe41e7ab12096566d0e1e2' }
-Upserted doc 3 in this.upstreamDB { updated: true, rev: '1-23f138235162408b8e6ea7c60351c5e3' }
-Done creating upstream changes
-CHANGE -  { title: 'Doc 1',
-  url: 'http://mysite.com/doc1',
-  _id: '1',
-  _rev: '1-8f515e0a01d1400788878e36490287e1' }
-CHANGE -  { title: 'Doc 2',
-  url: 'http://mysite.com/changed/doc2',
-  _id: '2',
-  _rev: '1-dcc171238abe41e7ab12096566d0e1e2' }
-CHANGE -  { title: 'Doc 3',
-  url: 'http://mysite.com/doc3',
-  _id: '3',
-  _rev: '1-a2253af8e19d435cae15a75a327be61a' }
-========== analyzeData() ==========
-RESULT { title: 'Doc 1',
-  url: 'http://mysite.com/doc1',
-  _id: '1',
-  _rev: '1-8f515e0a01d1400788878e36490287e1' }
-RESULT { title: 'Doc 2',
-  url: 'http://mysite.com/changed/doc2',
-  _id: '2',
-  _rev: '1-dcc171238abe41e7ab12096566d0e1e2' }
-RESULT { title: 'Doc 3',
-  url: 'http://mysite.com/doc3',
-  _id: '3',
-  _rev: '1-a2253af8e19d435cae15a75a327be61a' }
-All done!
-✨  Done in 3.43s.
-```
+# Example Output
 
 ```
 Sequence!ben:/Users/ben/code/pouchdb-bug$ yarn build && yarn test
@@ -97,91 +47,55 @@ yarn run v1.3.2
 $ node ./lib/index.js
 Tester inited
 ========== initialIndexing() ==========
-Upserted doc 1 in this.downstreamDB { updated: true, rev: '1-10832e0e3ae3485084fce8724be0c414' }
-Upserted doc 2 in this.downstreamDB { updated: true, rev: '1-088447ac96dc42658ee53e3bd5579d00' }
-Upserted doc 3 in this.downstreamDB { updated: true, rev: '1-ff4720e26e5a45a7aa4dd23a75b6dd75' }
+Upserted doc 1 in this.downstreamDB { updated: true, rev: '1-b7460083bb3843febd5290d459600144' }
+Upserted doc 2 in this.downstreamDB { updated: true, rev: '1-43c574ac83bb452e87b5f83417e7b887' }
+Upserted doc 3 in this.downstreamDB { updated: true, rev: '1-e9caabbc78ef412f9b947749acf79136' }
 Initial indexing finished
 ========== startReplication() ==========
 ========== createUpstreamDBChanges() ==========
-Upserted doc 1 in this.upstreamDB { updated: true, rev: '1-dc70cfc636124293b9da0b7b394881b4' }
-Upserted doc 2 in this.upstreamDB { updated: true, rev: '1-97bcdf85081944c9a59dec727e0fd3e7' }
-Upserted doc 3 in this.upstreamDB { updated: true, rev: '1-cc11a25714b349b489d8d1d3963229c5' }
-Done creating upstream changes
-CHANGE -  { title: 'Doc 1',
-  url: 'http://mysite.com/changed/doc1',
-  _id: '1',
-  _rev: '1-dc70cfc636124293b9da0b7b394881b4' }
-CHANGE -  { title: 'Doc 2',
-  url: 'http://mysite.com/changed/doc2',
-  _id: '2',
-  _rev: '1-97bcdf85081944c9a59dec727e0fd3e7' }
-CHANGE -  { title: 'Doc 3',
-  url: 'http://mysite.com/doc3',
-  _id: '3',
-  _rev: '1-ff4720e26e5a45a7aa4dd23a75b6dd75' }
-========== analyzeData() ==========
-RESULT { title: 'Doc 1',
-  url: 'http://mysite.com/changed/doc1',
-  _id: '1',
-  _rev: '1-dc70cfc636124293b9da0b7b394881b4' }
-RESULT { title: 'Doc 2',
-  url: 'http://mysite.com/changed/doc2',
-  _id: '2',
-  _rev: '1-97bcdf85081944c9a59dec727e0fd3e7' }
-RESULT { title: 'Doc 3',
-  url: 'http://mysite.com/doc3',
-  _id: '3',
-  _rev: '1-ff4720e26e5a45a7aa4dd23a75b6dd75' }
-All done!
-✨  Done in 3.43s.
-```
-
-```
-Sequence!ben:/Users/ben/code/pouchdb-bug$ yarn build && yarn test
-yarn run v1.3.2
-$ babel src -d lib
-src/Tester.js -> lib/Tester.js
-src/index.js -> lib/index.js
-✨  Done in 0.57s.
-yarn run v1.3.2
-$ node ./lib/index.js
-Tester inited
-========== initialIndexing() ==========
-Upserted doc 1 in this.downstreamDB { updated: true, rev: '1-8e8852d59fc345b6ac87c5fdcf5cf0a1' }
-Upserted doc 2 in this.downstreamDB { updated: true, rev: '1-e4b441957427445ebc05f09a2a8fb94c' }
-Upserted doc 3 in this.downstreamDB { updated: true, rev: '1-f3f261c89f844054bf521f8bd0372908' }
-Initial indexing finished
-========== startReplication() ==========
-========== createUpstreamDBChanges() ==========
-Upserted doc 1 in this.upstreamDB { updated: true, rev: '1-093d3fb5b8d7437c914ba80bfd47544c' }
-Upserted doc 2 in this.upstreamDB { updated: true, rev: '1-53efac6313d349f7a9852d7332e1cb6b' }
-Upserted doc 3 in this.upstreamDB { updated: true, rev: '1-8506f790bc7c4b6f9b75c408727588e8' }
+Upserted doc 1 in this.upstreamDB { updated: true, rev: '1-502322b86df84f8c9fbc438b8af32a04' }
+Upserted doc 2 in this.upstreamDB { updated: true, rev: '1-485cd706cf2f42efb0386f1677033ba4' }
+Upserted doc 3 in this.upstreamDB { updated: true, rev: '1-cc66469291cd4ec9808a47f22a47ccae' }
 Done creating upstream changes
 CHANGE -  { title: 'Doc 1',
   url: 'http://mysite.com/doc1',
   _id: '1',
-  _rev: '1-8e8852d59fc345b6ac87c5fdcf5cf0a1' }
+  _rev: '1-b7460083bb3843febd5290d459600144' }
 CHANGE -  { title: 'Doc 2',
-  url: 'http://mysite.com/doc2',
+  url: 'http://mysite.com/changed/doc2',
   _id: '2',
-  _rev: '1-e4b441957427445ebc05f09a2a8fb94c' }
+  _rev: '1-485cd706cf2f42efb0386f1677033ba4' }
 CHANGE -  { title: 'Doc 3',
   url: 'http://mysite.com/doc3',
   _id: '3',
-  _rev: '1-f3f261c89f844054bf521f8bd0372908' }
+  _rev: '1-e9caabbc78ef412f9b947749acf79136' }
 ========== analyzeData() ==========
-RESULT { title: 'Doc 1',
+===== Showing upstreamDB docs =====
+UPSTREAM DOC { title: 'Doc 1',
+  url: 'http://mysite.com/changed/doc1',
+  _id: '1',
+  _rev: '1-502322b86df84f8c9fbc438b8af32a04' }
+UPSTREAM DOC { title: 'Doc 2',
+  url: 'http://mysite.com/changed/doc2',
+  _id: '2',
+  _rev: '1-485cd706cf2f42efb0386f1677033ba4' }
+UPSTREAM DOC { title: 'Doc 3',
+  url: 'http://mysite.com/changed/doc3',
+  _id: '3',
+  _rev: '1-cc66469291cd4ec9808a47f22a47ccae' }
+===== Showing downstreamDB docs =====
+DOWNSTREAM DOC { title: 'Doc 1',
   url: 'http://mysite.com/doc1',
   _id: '1',
-  _rev: '1-8e8852d59fc345b6ac87c5fdcf5cf0a1' }
-RESULT { title: 'Doc 2',
-  url: 'http://mysite.com/doc2',
+  _rev: '1-b7460083bb3843febd5290d459600144' }
+DOWNSTREAM DOC { title: 'Doc 2',
+  url: 'http://mysite.com/changed/doc2',
   _id: '2',
-  _rev: '1-e4b441957427445ebc05f09a2a8fb94c' }
-RESULT { title: 'Doc 3',
+  _rev: '1-485cd706cf2f42efb0386f1677033ba4' }
+DOWNSTREAM DOC { title: 'Doc 3',
   url: 'http://mysite.com/doc3',
   _id: '3',
-  _rev: '1-f3f261c89f844054bf521f8bd0372908' }
-All done!
-✨  Done in 3.42s.
+  _rev: '1-e9caabbc78ef412f9b947749acf79136' }
+✨  Done in 3.41s.
+Sequence!ben:/Users/ben/code/pouchdb-bug$
 ```

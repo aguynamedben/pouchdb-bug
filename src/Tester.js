@@ -109,12 +109,22 @@ class Tester {
     // Sleep just... to be sure?
     setTimeoutPromise(3000).then(() => {
       console.log(`========== analyzeData() ==========`);
-      const promises = [
-        this.downstreamDB.get('1').then((doc) => console.log('RESULT', doc)),
-        this.downstreamDB.get('2').then((doc) => console.log('RESULT', doc)),
-        this.downstreamDB.get('3').then((doc) => console.log('RESULT', doc)),
+      const upstreamPromises = [
+        this.upstreamDB.get('1').then((doc) => console.log('UPSTREAM DOC', doc)),
+        this.upstreamDB.get('2').then((doc) => console.log('UPSTREAM DOC', doc)),
+        this.upstreamDB.get('3').then((doc) => console.log('UPSTREAM DOC', doc)),
       ];
-      Promise.all(promises).then(() => console.log(`All done!`));
+      const downstreamPromises = [
+        this.downstreamDB.get('1').then((doc) => console.log('DOWNSTREAM DOC', doc)),
+        this.downstreamDB.get('2').then((doc) => console.log('DOWNSTREAM DOC', doc)),
+        this.downstreamDB.get('3').then((doc) => console.log('DOWNSTREAM DOC', doc)),
+      ];
+
+      Promise.resolve()
+        .then(() => console.log('===== Showing upstreamDB docs ====='))
+        .then(() => Promise.all(upstreamPromises))
+        .then(() => console.log('===== Showing downstreamDB docs ====='))
+        .then(() => Promise.all(downstreamPromises));
     });
   }
 }

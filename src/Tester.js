@@ -77,8 +77,8 @@ class Tester {
 
   listenForDownstreamDBChanges() {
     const changeSettings = { since: 'now', live: true, include_docs: true };
-    //this.downstreamDB.changes(changeSettings)
-    //  .on('change', this.handleChange);
+    this.downstreamDB.changes(changeSettings)
+      .on('change', this.handleChange);
     this.downstreamDB
   }
 

@@ -7,8 +7,8 @@ yarn build && yarn test
 ```
 
 ## Versions (see package.json)
-pouchdb: 6.3.4
-pouchdb-upsert: 2.0.0
+- pouchdb: 6.3.4
+- pouchdb-upsert: 2.0.0
 
 # Problem
 
